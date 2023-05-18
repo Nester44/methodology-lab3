@@ -2,6 +2,12 @@ FROM python:slim-bullseye
 
 WORKDIR /app
 
+COPY requirements/backend.in requirements.in
+
+RUN pip install -r requirements.in
+
+COPY . .
+
 COPY . .
 
 RUN pip install -r requirements/backend.in
