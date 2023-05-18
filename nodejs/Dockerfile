@@ -1,17 +1,11 @@
-FROM node:latest AS build
+FROM node:latest
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm install
+COPY package.json .
 
 COPY index.js .
 
-FROM gcr.io/distroless/nodejs
+RUN npm install
 
-COPY --from=build /app /
-
-EXPOSE 8080
-
-CMD ["server.js"]
+CMD ["node", "index.js"]
